@@ -80,7 +80,6 @@ An endpoint to fetch polled data is available at http://localhost:5001/fetch/{sy
 * DASH (http://localhost:5001/fetch/dash)
 
 ![img_2.png](img_2.png)
-[.git](.git)
 
 # Idempotency
 
