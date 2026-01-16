@@ -91,3 +91,10 @@ comprising the following:
 * LastHash.
 
 In the case that the composite key exists in either the listner session or database,  it will be ignored as a repeat.
+
+# Health
+Observability is handled by time to live counters aggregated in a service instance available to the whole application.  
+
+A health endpoint is exposed that shows the counters, giving insight into internal behavours of the high throughput system:
+
+http://localhost:5001/health
