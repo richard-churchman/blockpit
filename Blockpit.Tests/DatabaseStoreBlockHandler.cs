@@ -81,17 +81,43 @@ namespace Blockpit.Tests
 
             var blockTickInDatabase = await dbContext
                 .BlockTick.Where(w => w.Hash == blockTick.Hash
-                                      && w.Height == blockTick.Height
+                                      && w.LastForkHash == blockTick.LastForkHash
+                                      && w.LatestUrl == blockTick.LatestUrl
+                                      && w.Hash == blockTick.Hash
+                                      && w.Name == blockTick.Name
+                                      && w.PreviousHash == blockTick.PreviousHash
+                                      && w.PreviousUrl == blockTick.PreviousUrl
                                       && w.Symbol == blockTick.Symbol
-                                      && w.PreviousHash == blockTick.PreviousHash).FirstOrDefaultAsync(_token);
+                                      && w.Height == blockTick.Height
+                                      && w.LastForkHeight == blockTick.LastForkHeight
+                                      && w.PeerCount == blockTick.PeerCount
+                                      && w.Time == blockTick.Time
+                                      && w.UnconfirmedCount == blockTick.UnconfirmedCount
+                                      ).FirstOrDefaultAsync(_token);
 
             Assert.True(blockTickInDatabase != null, "Block Tick Not Inserted.");
 
-            var utxoFeeInDatabase = await dbContext.UxtoFee.Where(w => w.BlockTickGuid == blockTickInDatabase.Guid).FirstOrDefaultAsync(_token);
+            var utxoFeeInDatabase = await dbContext.UxtoFee.Where(w => 
+                w.BlockTickGuid == blockTickInDatabase.Guid
+                && blockTick.UtxoFees != null
+                && w.LowFeePerKb == blockTick.UtxoFees.LowFeePerKb
+                && w.MediumFeePerKb == blockTick.UtxoFees.MediumFeePerKb
+                && w.HighFeePerKb == blockTick.UtxoFees.HighFeePerKb
+                ).FirstOrDefaultAsync(_token);
 
             Assert.True(utxoFeeInDatabase != null, "Uxto Fee was not Inserted for Block Tick.");
 
-            var gasFeeInDatabase = await dbContext.GasFee.Where(w => w.BlockTickGuid == blockTickInDatabase.Guid).FirstOrDefaultAsync(_token);
+            var gasFeeInDatabase = await dbContext.GasFee.Where(
+                w => w.BlockTickGuid == blockTickInDatabase.Guid
+                && blockTick.GasFees != null
+                && w.BaseFee == blockTick.GasFees.BaseFee
+                && w.HighGasPrice == blockTick.GasFees.HighGasPrice
+                && w.MediumGasPrice == blockTick.GasFees.MediumGasPrice
+                && w.LowGasPrice == blockTick.GasFees.LowGasPrice
+                && w.HighPriorityFee == blockTick.GasFees.HighPriorityFee
+                && w.MediumPriorityFee == blockTick.GasFees.MediumPriorityFee
+                && w.LowPriorityFee == blockTick.GasFees.LowPriorityFee
+                ).FirstOrDefaultAsync(_token);
 
             Assert.True(gasFeeInDatabase != null, "Gas Fee was not Inserted for Block Tick.");
 
@@ -105,7 +131,7 @@ namespace Blockpit.Tests
                 rollback = true;
             }
 
-            Assert.True(rollback, "Transaction was not rolled back on duplicate block tick.");
+            Assert.True(rollback, "Transaction was not rolled back on duplicate block tick.  Idempotency failed.");
 
         }
     }

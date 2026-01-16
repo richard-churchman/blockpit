@@ -21,7 +21,8 @@ cd blockpit
 docker compose up
 ````
 
-The -d detatch switch has been deliberetely ommitted to expose logging.  To update to latest versions of Blockpit, assuming in Blockpit directory:
+The -d detatch switch has been deliberetely ommitted to expose logging. To update to latest versions of Blockpit,
+assuming in Blockpit directory:
 
 ````shell
 git pull
@@ -59,10 +60,10 @@ Given container first approach, all configuration is passed to the application v
 
 Blockpit makes the assumption that the log4net file can't be configured in the container, and is instead instantiated
 programatically using
-environment variables, whereby the ConsoleAppender and RollingFileAppender options are exposed.  
+environment variables, whereby the ConsoleAppender and RollingFileAppender options are exposed.
 
 The recomendation when running under Docker is to use stdout interfaces in any case,
-and relay on Docker for wider log integration,  and as such,  only log patterns and levels need attention in practice.
+and relay on Docker for wider log integration, and as such, only log patterns and levels need attention in practice.
 
 # Swagger
 
@@ -79,6 +80,7 @@ An endpoint to fetch polled data is available at http://localhost:5001/fetch/{sy
 * DASH (http://localhost:5001/fetch/dash)
 
 ![img_2.png](img_2.png)
+[.git](.git)
 
 # Idempotency
 
@@ -90,11 +92,36 @@ comprising the following:
 * Height.
 * LastHash.
 
-In the case that the composite key exists in either the listner session or database,  it will be ignored as a repeat.
+In the case that the composite key exists in either the listner session or database, it will be ignored as a repeat.
 
 # Health
-Observability is handled by time to live counters aggregated in a service instance available to the whole application.  
 
-A health endpoint is exposed that shows the counters, giving insight into internal behavours of the high throughput system:
+Observability is handled by time to live counters aggregated in a service instance available to the whole application.
+
+A health endpoint is exposed that shows the counters, giving insight into internal behavours of the high throughput
+system:
 
 http://localhost:5001/health
+
+The following counters provide for observability:
+
+| Counter                             | Description                                                         |
+|-------------------------------------|---------------------------------------------------------------------|
+| BTCPollRepeat                       | Record identified as duplicate in BTC poll cache.                   |
+| BTCPollRepeatMediator               | Record identified as duplicate in mediator for BTC listner.         |
+| BTCPoll                             | Sucessful BTC poll and mediation.                                   |
+| BTCPollErrors                       | Unhandled error in BTC listener poll.                               |
+| DASHPollRepeat                      | Record identified as duplicate in DASH poll cache.                  |
+| DASHPollRepeatMediator              | Record identified as duplicate in mediator for DASH listner.        |
+| DASHPoll                            | Sucessful DASH poll and mediation.                                  |
+| DASHPollErrors                      | Unhandled error in DASH listener poll.                              |
+| ETHPollRepeat                       | Record identified as duplicate in ETH poll cache.                   |
+| ETHPollRepeatMediator               | Record identified as duplicate in mediator for ETH listner.         |
+| ETHPoll                             | Sucessful ETH poll and mediation.                                   |
+| ETHPollErrors                       | Unhandled error in ETH listener poll.                               |
+| BlockTickHandler                    | Invocation of mdeiator handler.                                     |
+| BlockTickHandlerRollbackIdempotency | Rollback for repeat in mediator handler.                            |
+| BlockTickHandlerCommit              | Sucessful commit in mediator handler.                               |
+| BlockTickHandlerRollbackFatal       | Fatal and unhandled error in mediator handler (caught in listener). |
+
+Counters maintained over a rolling five minute window, with expired counters removed at thirty second intervals.
