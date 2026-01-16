@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net9.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <RootNamespace>Blockpit.Listener</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="log4net" Version="3.2.0"/>
+        <PackageReference Include="MediatR" Version="14.0.0"/>
+        <PackageReference Include="Microsoft.Extensions.Hosting" Version="10.0.1"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\Blockpit.Mediator\Blockpit.Mediator.csproj"/>
+        <ProjectReference Include="..\Blockpit.Observability\Blockpit.Observability.csproj"/>
+    </ItemGroup>
+
+</Project>

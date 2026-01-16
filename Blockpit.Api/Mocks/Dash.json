@@ -1,0 +1,16 @@
+{
+  "name": "DASH",
+  "height": 2405351,
+  "hash": "0000000000000001d6a055f403ccedc89767fde9d7ebfbbd9173a614e6dbb2a8",
+  "time": "2026-01-14T06:25:03.336188777Z",
+  "latest_url": "https://api.blockcypher.com/v1/dash/main/blocks/0000000000000001d6a055f403ccedc89767fde9d7ebfbbd9173a614e6dbb2a8",
+  "previous_hash": "00000000000000145ec605bd15e633a4033af7478e95baac31a45f211d46e28d",
+  "previous_url": "https://api.blockcypher.com/v1/dash/main/blocks/00000000000000145ec605bd15e633a4033af7478e95baac31a45f211d46e28d",
+  "peer_count": 164,
+  "unconfirmed_count": 37,
+  "high_fee_per_kb": 22730,
+  "medium_fee_per_kb": 17986,
+  "low_fee_per_kb": 12324,
+  "last_fork_height": 2400187,
+  "last_fork_hash": "00000000000000082a3caf3d2b188fa678d732a9feefeedaa7e51076107fe4e6"
+}

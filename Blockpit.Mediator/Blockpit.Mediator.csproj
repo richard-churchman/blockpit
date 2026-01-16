@@ -1,0 +1,27 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net9.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="log4net" Version="3.2.0"/>
+        <PackageReference Include="MediatR" Version="14.0.0"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Reference Include="log4net">
+            <HintPath>..\..\..\.nuget\packages\log4net\3.2.0\lib\netstandard2.0\log4net.dll</HintPath>
+        </Reference>
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\Blockpit.Configuration\Blockpit.Configuration.csproj"/>
+        <ProjectReference Include="..\Blockpit.Data\Blockpit.Data.csproj"/>
+        <ProjectReference Include="..\Blockpit.Observability\Blockpit.Observability.csproj"/>
+        <ProjectReference Include="..\Blockpit.Repository\Blockpit.Repository.csproj"/>
+    </ItemGroup>
+
+</Project>

@@ -1,0 +1,15 @@
+﻿services:
+  blockpit.api:
+    image: blockpit.api
+    ports:
+      - 5001:5001
+    environment:
+      - ASPNETCORE_URLS=http://0.0.0.0:5001
+    networks:
+      - default
+    build:
+      context: .
+      dockerfile: Blockpit.Api/Dockerfile
+networks:
+  default:
+    driver: bridge

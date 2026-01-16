@@ -1,0 +1,20 @@
+{
+  "name": "ETH",
+  "height": 24225569,
+  "hash": "c38499516cbc6ff8cd23d3459a65b9eb9ab4e8edaab3a4a094830e8948230218",
+  "time": "2026-01-13T21:31:08.182353301Z",
+  "latest_url": "https://api.blockcypher.com/v1/eth/main/blocks/c38499516cbc6ff8cd23d3459a65b9eb9ab4e8edaab3a4a094830e8948230218",
+  "previous_hash": "a2d96e2d6bbbc33e6c694f085305d4c0ddd47b97bd630775350e4ddb0d047049",
+  "previous_url": "https://api.blockcypher.com/v1/eth/main/blocks/a2d96e2d6bbbc33e6c694f085305d4c0ddd47b97bd630775350e4ddb0d047049",
+  "peer_count": 0,
+  "unconfirmed_count": 4,
+  "high_gas_price": 12521440124,
+  "medium_gas_price": 5226907862,
+  "low_gas_price": 727470811,
+  "high_priority_fee": 1317146854,
+  "medium_priority_fee": 668265494,
+  "low_priority_fee": 146654113,
+  "base_fee": 52857032,
+  "last_fork_height": 24195529,
+  "last_fork_hash": "55ebeff2c33071369c19f293916135b249b06f6098b961fe6a440d446259cecd"
+}
