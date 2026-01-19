@@ -13,7 +13,7 @@ Port binding is all interfaces on port 5001. Only http is supported.
 
 # Quick Start
 
-It is recomended to run Blockpit via Docker. The following steps need be followed to instantiate the application:
+It is recommended to run Blockpit via Docker. The following steps need be followed to instantiate the application:
 
 ````shell
 git clone https://github.com/richard-churchman/blockpit
@@ -21,7 +21,7 @@ cd blockpit
 docker compose up
 ````
 
-The -d detatch switch has been deliberetely ommitted to expose logging. To update to latest versions of Blockpit,
+The -d detatch switch has been deliberately ommitted to expose logging. To update to latest versions of Blockpit,
 assuming in Blockpit directory:
 
 ````shell
@@ -53,7 +53,7 @@ Given container first approach, all configuration is passed to the application v
 | LOG4NET_MAXIMUM_FILE_SIZE     | 100MB                                                              | Programatic instantiation of log4net configuration, as below.           |
 | LOG4NET_MAX_SIZE_ROLL_BACKUPS | 1000                                                               | Programatic instantiation of log4net configuration, as below.           |
 | LOG4NET_LOG_PATH              | null                                                               | Programatic instantiation of log4net configuration, as below.           |
-| IGNORE_SSL                    | false                                                              | Ignore SSL on HTTP tests,  usful for polling mocks.                     |
+| IGNORE_SSL                    | false                                                              | Ignore SSL on HTTP tests,  useful for polling mocks.                     |
 | POLL_RATE                     | 30000                                                              | The wait interval to poll endpoints,  infrequently to avoid rate limit. |
 
 # Programatic Instantiation of Log4net
@@ -84,14 +84,14 @@ An endpoint to fetch polled data is available at http://localhost:5001/fetch/{sy
 # Idempotency
 
 Blockchain data is not especially volatile as compared to stock price data, and given a poll based integration
-methodology, it is highly likely to process repeats. Idemptency on blockchain data is maintained given a composite key
+methodology, it is highly likely to process repeats. Idempotency on blockchain data is maintained given a composite key
 comprising the following:
 
 * Hash.
 * Height.
 * LastHash.
 
-In the case that the composite key exists in either the listner session or database, it will be ignored as a repeat.
+In the case that the composite key exists in either the listener session or database, it will be ignored as a repeat.
 
 # Health
 
@@ -112,15 +112,15 @@ The following counters provide for observability:
 | BTCPollErrors                       | Unhandled error in BTC listener poll.                               |
 | DASHPollRepeat                      | Record identified as duplicate in DASH poll cache.                  |
 | DASHPollRepeatMediator              | Record identified as duplicate in mediator for DASH listner.        |
-| DASHPoll                            | Sucessful DASH poll and mediation.                                  |
+| DASHPoll                            | Successful DASH poll and mediation.                                  |
 | DASHPollErrors                      | Unhandled error in DASH listener poll.                              |
 | ETHPollRepeat                       | Record identified as duplicate in ETH poll cache.                   |
 | ETHPollRepeatMediator               | Record identified as duplicate in mediator for ETH listner.         |
-| ETHPoll                             | Sucessful ETH poll and mediation.                                   |
+| ETHPoll                             | Successful ETH poll and mediation.                                   |
 | ETHPollErrors                       | Unhandled error in ETH listener poll.                               |
-| BlockTickHandler                    | Invocation of mdeiator handler.                                     |
+| BlockTickHandler                    | Invocation of mediator handler.                                     |
 | BlockTickHandlerRollbackIdempotency | Rollback for repeat in mediator handler.                            |
-| BlockTickHandlerCommit              | Sucessful commit in mediator handler.                               |
+| BlockTickHandlerCommit              | Successful commit in mediator handler.                               |
 | BlockTickHandlerRollbackFatal       | Fatal and unhandled error in mediator handler (caught in listener). |
 
 Counters maintained over a rolling five minute window, with expired counters removed at thirty second intervals.
